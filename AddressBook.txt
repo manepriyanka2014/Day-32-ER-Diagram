@@ -1,0 +1,372 @@
+Welcome to Address book Database Management
+-------------------------------------------------------------------------------------------------------
+
+//UC1:
+create addres book database:
+________________________________________________________________
+
+mysql> create database AddressBook;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbook        |
+| company            |
+| employee           |
+| employee2          |
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC2:
+create table in the database:
+________________________________________________________________
+
+mysql> use AddressBook;
+Database changed
+mysql> create table addressbook(
+    -> firstname varchar(200),
+    -> lastname varchar(200),
+    -> address varchar(200),
+    -> city varchar(150),
+    -> state varchar(150),
+    -> zip int,
+    -> phone_num long,
+    -> email varchar(200)
+    -> );
+Query OK, 0 rows affected (2.04 sec)
+
+mysql> desc addressbook;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| firstname | varchar(200) | YES  |     | NULL    |       |
+| lastname  | varchar(200) | YES  |     | NULL    |       |
+| address   | varchar(200) | YES  |     | NULL    |       |
+| city      | varchar(150) | YES  |     | NULL    |       |
+| state     | varchar(150) | YES  |     | NULL    |       |
+| zip       | int          | YES  |     | NULL    |       |
+| phone_num | mediumtext   | YES  |     | NULL    |       |
+| email     | varchar(200) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+8 rows in set (0.08 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC3:
+Inserting the new addresses:
+________________________________________________________________
+
+insert into addressbook values('Priyanka','Mane','Hadpsar','Pune','Maharashtra',9970385590 ,'manepriyanka2014@gmail.com ');
+insert into addressbook values('Naga babu','Pakki','Veleru','Hjunction','Andhra Pradesh',521105,9630254187,'nagababu.pakki@gmail.com');
+insert into addressbook values('Venki','Mattakunta','Pondugula','Mylavaram','Andhra Pradesh',521119,9182576302,'venki.m@gmail.com');
+insert into addressbook values('Rajesh','Pamarthi','Pedavegi','Eluru','Andhra Pradesh',531129,8529637014,'pamarthi.rajesh@gmail.com');
+insert into addressbook values('Mallesh','Uma','Lingagudem','Chintalapudi','Andhra Pradesh',531239,7356412890,'umamallesh@gmail.com');
+
+mysql> select* from addressbook;
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+
+| firstname    | lastname   | address        | city         | state          | zip    | phone_num  | email                             |
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+
+| Priyanka     | Mane       | Hadpasar       | Pune         | Maharashtra    | 411028 | 9970385590 | manepriyanka2014@gmail.com        |
+| Naga babu    | Pakki      | Veleru         | Hjunction    | Andhra Pradesh | 521105 | 9630254187 | nagababu.pakki@gmail.com          |
+| Venki        | Mattakunta | Pondugula      | Mylavaram    | Andhra Pradesh | 521119 | 9182576302 | venki.m@gmail.com                 |
+| Rajesh       | Pamarthi   | Pedavegi       | Eluru        | Andhra Pradesh | 531129 | 8529637014 | pamarthi.rajesh@gmail.com         |
+| Mallesh      | Uma        | Lingagudem     | Chintalapudi | Andhra Pradesh | 531239 | 7356412890 | umamallesh@gmail.com              |
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+
+5 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC4:
+Updte the address by firstname:
+________________________________________________________________
+
+mysql> update addressbook set address = 'Seetharamapurm' where firstname = 'Priyanka';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from  addressbook;
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+
+| firstname    | lastname   | address        | city         | state          | zip    | phone_num  | email                             |
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+
+| Priyanka     | Mane       | Seetharamapurm| Pune         | Maharashtra    | 411028 | 9970385590 | manepriyanka2014@gmail.com        |
+| Naga babu    | Pakki      | Veleru         | Hjunction    | Andhra Pradesh | 521105 | 9630254187 | nagababu.pakki@gmail.com          |
+| Venki        | Mattakunta | Pondugula      | Mylavaram    | Andhra Pradesh | 521119 | 9182576302 | venki.m@gmail.com                 |
+| Rajesh       | Pamarthi   | Pedavegi       | Eluru        | Andhra Pradesh | 531129 | 8529637014 | pamarthi.rajesh@gmail.com         |
+| Mallesh      | Uma        | Lingagudem     | Chintalapudi | Andhra Pradesh | 531239 | 7356412890 | umamallesh@gmail.com              |
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+
+5 rows in set (0.02 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC5:
+deleting the contact:
+________________________________________________________________
+
+mysql> delete from addressbook where firstname = 'Mallesh';
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select * from  addressbook;
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+
+| firstname    | lastname   | address        | city       | state          | zip    | phone_num  | email                             |
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+
+| Priyanka     | Mane       | Seetarmpuram   | Pune       | Maharashtra    | 411028 | 9970385590 | manepriyanka2014@gmail.com        |
+| Naga babu    | Pakki      | Veleru         | Hjunction  | Andhra Pradesh | 521105 | 9630254187 | nagababu.pakki@gmail.com          |
+| Venki        | Mattakunta | Pondugula      | Mylavaram  | Andhra Pradesh | 521119 | 9182576302 | venki.m@gmail.com                 |
+| Rajesh       | Pamarthi   | Pedavegi       | Eluru      | Andhra Pradesh | 531129 | 8529637014 | pamarthi.rajesh@gmail.com         |
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+
+4 rows in set (0.04 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC6:
+________________________________________________________________
+
+mysql> select firstname from addressbook where city = 'Eluru';
++-----------+
+| firstname |
++-----------+
+| Rajesh    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select firstname from addressbook where city = 'Hjunction';
++-----------+
+| firstname |
++-----------+
+| Naga babu |
++-----------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC7:
+________________________________________________________________
+
+mysql> select state,count(firstname) from addressbook where state ='Andhra Pradesh';
++----------------+------------------+
+| state          | count(firstname) |
++----------------+------------------+
+| Andhra Pradesh |                4 |
++----------------+------------------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC8:
+________________________________________________________________
+
+mysql> SELECT firstname, lastname, address, city, state, zip, phone_num, email FROM addressbook ORDER BY firstname;
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+
+| firstname    | lastname   | address        | city       | state          | zip    | phone_num  | email                             |
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+
+| Naga babu    | Pakki      | Veleru         | Hjunction  | Andhra Pradesh | 521105 | 9630254187 | nagababu.pakki@gmail.com          |
+| Rajesh       | Pamarthi   | Pedavegi       | Eluru      | Andhra Pradesh | 531129 | 8529637014 | pamarthi.rajesh@gmail.com         |
+|  Priyanka    | Mane       | Seetarmpuram    | Pune       | Maharashtra    | 411028 | 9970385590 | manepriyanka2014@gmail.com        |
+| Venki        | Mattakunta | Pondugula      | Mylavaram  | Andhra Pradesh | 521119 | 9182576302 | venki.m@gmail.com                 |
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC9:
+________________________________________________________________
+
+mysql> alter table addressbook add type varchar(150) after email;
+Query OK, 0 rows affected (2.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc addressbook;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| firstname | varchar(200) | YES  |     | NULL    |       |
+| lastname  | varchar(200) | YES  |     | NULL    |       |
+| address   | varchar(200) | YES  |     | NULL    |       |
+| city      | varchar(150) | YES  |     | NULL    |       |
+| state     | varchar(150) | YES  |     | NULL    |       |
+| zip       | int          | YES  |     | NULL    |       |
+| phone_num | mediumtext   | YES  |     | NULL    |       |
+| email     | varchar(200) | YES  |     | NULL    |       |
+| type      | varchar(150) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.04 sec)
+
+mysql> update addressbook set type='friend' where firstname='Naga babu';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update addressbook set type='friend' where firstname='Rajesh';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update addressbook set type='brother' where firstname='Venki';
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+---------+
+| firstname    | lastname   | address        | city       | state          | zip    | phone_num  | email                             | type    |
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+---------+
+|  Priyanka    | Mane       | Seetarmpuram   | Pune       | Maharashtra    | 411028 | 9970385590 | manepriyanka2014@gmail.com        | Null    |
+| Naga babu    | Pakki      | Veleru         | Hjunction  | Andhra Pradesh | 521105 | 9630254187 | nagababu.pakki@gmail.com          | friend  |
+| Venki        | Mattakunta | Pondugula      | Mylavaram  | Andhra Pradesh | 521119 | 9182576302 | venki.m@gmail.com                 | brother |
+| Rajesh       | Pamarthi   | Pedavegi       | Eluru      | Andhra Pradesh | 531129 | 8529637014 | pamarthi.rajesh@gmail.com         | friend  |
++--------------+------------+----------------+------------+----------------+--------+------------+-----------------------------------+---------+
+4 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC10:
+________________________________________________________________
+
+mysql> select type,count(phone_num) from addressbook where type='friend';
++--------+------------------+
+| type   | count(phone_num) |
++--------+------------------+
+| friend |                2 |
++--------+------------------+
+1 row in set (0.00 sec)
+
+mysql> select type,count(firstname) from addressbook where type='friend';
++--------+------------------+
+| type   | count(firstname) |
++--------+------------------+
+| friend |                2 |
++--------+------------------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC11:
+________________________________________________________________
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phone_num,email,type) values
+    -> ('Mallesh','Uma','Lingagudem','Chintalapudi','Andhra Pradesh',531239,7356412890,'umamallesh@gmail.com','friend');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phone_num,email,type) values
+    -> ('Ashok' 'Mane','Ambajogai','Beed', 'Maharashtra',431517, 8698704820, 'ashokmane1993@gmail.com' ,'brother');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> select * from addressbook;
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+---------+
+| firstname    | lastname   | address        | city         | state          | zip    | phone_num  | email                             | type    |
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+---------+
+|  Priyanka    | Mane      | Seetarmpuram  | Pune           | Maharashtra    | 411028 | 997038559  | manepriyanka2014@gmail.com        | Null    |
+| Naga babu    | Pakki      | Veleru         | Hjunction    | Andhra Pradesh | 521105 | 9630254187 | nagababu.pakki@gmail.com          | friend  |
+| Venki        | Mattakunta | Pondugula      | Mylavaram    | Andhra Pradesh | 521119 | 9182576302 | venki.m@gmail.com                 | brother |
+| Rajesh       | Pamarthi   | Pedavegi       | Eluru        | Andhra Pradesh | 531129 | 8529637014 | pamarthi.rajesh@gmail.com         | friend  |
+| Mallesh      | Uma        | Lingagudem     | Chintalapudi | Andhra Pradesh | 531239 | 7356412890 | umamallesh@gmail.com              | friend  |
+| Ashok        | Mane       | Ambajogai      | Beed         | Maharashtra    | 431517 | 8698704820 | ashokmane1993@gmail.com           | brother |
++--------------+------------+----------------+--------------+----------------+--------+------------+-----------------------------------+---------+
+6 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC12:
+________________________________________________________________
+
+mysql> create table personcontact(
+    -> firstname varchar(100),
+    -> lastname varchar(100),
+    -> address varchar(150),
+    -> phonenumber bigint,
+    -> email varchar(150),
+    -> primary key (firstname)
+    -> );
+Query OK, 0 rows affected (0.86 sec)
+
+mysql> desc personcontact;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(100) | NO   | PRI | NULL    |       |
+| lastname    | varchar(100) | YES  |     | NULL    |       |
+| address     | varchar(150) | YES  |     | NULL    |       |
+| phonenumber | bigint       | YES  |     | NULL    |       |
+| email       | varchar(150) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.11 sec)
+
+mysql>  create table personaddress(
+    -> zip int(10),
+    -> city varchar(100),
+    -> state varchar(100),
+    -> primary key(zip)
+    -> );
+Query OK, 0 rows affected, 1 warning (1.10 sec)
+
+mysql> desc personaddress;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| zip   | int          | NO   | PRI | NULL    |       |
+| city  | varchar(100) | YES  |     | NULL    |       |
+| state | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.13 sec)
+
+mysql> create table person_contact_address
+    -> (
+    -> firstname varchar(50),
+    -> zip int(10),
+    -> foreign key(firstname)references personcontact(firstname),
+    -> foreign key(zip) references personaddress(zip)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.81 sec)
+
+mysql> insert into personcontact(firstname,lastname,address,phonenumber,email) values
+    ->  ('Sandeep','Varma','Karlapalem','9638520147','sandeep@gmail.com'),
+    -> ('Anjiraj','Ardula','Miryalguda','8694512307','anjiraj@gmail.com');
+Query OK, 2 rows affected (0.28 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select* from personcontact;
++-----------+----------+------------+-------------+-------------------+
+| firstname | lastname | address    | phonenumber | email             |
++-----------+----------+------------+-------------+-------------------+
+| Anjiraj   | Ardula   | Miryalguda |  8694512307 | anjiraj@gmail.com |
+| Sandeep   | Varma    | Karlapalem |  9638520147 | sandeep@gmail.com |
++-----------+----------+------------+-------------+-------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into personaddress(zip,city,state) values
+    -> ('522101','Guntur','Andhra Pradesh'),
+    -> ('508207','Miryalguda','Telangana');
+Query OK, 2 rows affected (0.30 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from personaddress;
++--------+------------+----------------+
+| zip    | city       | state          |
++--------+------------+----------------+
+| 508207 | Miryalguda | Telangana      |
+| 522101 | Guntur     | Andhra Pradesh |
++--------+------------+----------------+
+2 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+
+//UC13:
+________________________________________________________________
+
+mysql> select * from personcontact;
++-----------+----------+------------+-------------+-------------------+
+| firstname | lastname | address    | phonenumber | email             |
++-----------+----------+------------+-------------+-------------------+
+| Anjiraj   | Ardula   | Miryalguda |  8694512307 | anjiraj@gmail.com |
+| Sandeep   | Varma    | Karlapalem |  9638520147 | sandeep@gmail.com |
++-----------+----------+------------+-------------+-------------------+
+2 rows in set (0.02 sec)
+
+-------------------------------------------------------------------------------------------------------
+
